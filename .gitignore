@@ -1,0 +1,10 @@
+
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.tmp
+*.log
+appsettings.Local.json
+secrets.json
