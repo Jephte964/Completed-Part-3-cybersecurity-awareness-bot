@@ -1,0 +1,13 @@
+
+CREATE DATABASE IF NOT EXISTS CybersecurityDB;
+
+USE CybersecurityDB;
+
+CREATE TABLE IF NOT EXISTS Tasks
+(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(150) NOT NULL,
+    Description TEXT,
+    ReminderDate DATETIME NULL,
+    IsCompleted BOOLEAN NOT NULL DEFAULT FALSE
+);

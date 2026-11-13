@@ -1,0 +1,303 @@
+﻿<Window x:Class="CybersecurityAwarenessBot.GUI.QuizWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Quiz"
+        Height="650"
+        Width="850"
+        MinHeight="580"
+        MinWidth="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#080E1A"
+        Foreground="#F1F5F9"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+
+        <Style x:Key="AnswerOptionStyle"
+               TargetType="RadioButton">
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="14"/>
+            <Setter Property="Margin" Value="0,7"/>
+            <Setter Property="Background" Value="#172338"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="AnswerBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="#26364D"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="{TemplateBinding Padding}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Ellipse x:Name="RadioCircle"
+                                         Width="18"
+                                         Height="18"
+                                         Stroke="#64748B"
+                                         StrokeThickness="2"
+                                         VerticalAlignment="Center"
+                                         Margin="0,0,12,0"/>
+
+                                <ContentPresenter Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="AnswerBorder"
+                                        Property="BorderBrush"
+                                        Value="#34D399"/>
+                                <Setter TargetName="AnswerBorder"
+                                        Property="Background"
+                                        Value="#1B2D40"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="AnswerBorder"
+                                        Property="BorderBrush"
+                                        Value="#34D399"/>
+                                <Setter TargetName="AnswerBorder"
+                                        Property="Background"
+                                        Value="#15352F"/>
+                                <Setter TargetName="RadioCircle"
+                                        Property="Stroke"
+                                        Value="#34D399"/>
+                                <Setter TargetName="RadioCircle"
+                                        Property="Fill"
+                                        Value="#34D399"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter Property="Opacity"
+                                        Value="0.6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="QuizButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background" Value="#34D399"/>
+            <Setter Property="Foreground" Value="#08111F"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="22,12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="9"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#6EE7B7"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.8"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0"
+                    Margin="0,0,0,25">
+
+            <TextBlock Text="LEARNING CENTER / QUIZ"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Foreground="#34D399"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,8"/>
+
+            <TextBlock Text="Cybersecurity Challenge"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Foreground="#F1F5F9"/>
+
+            <TextBlock Text="Test your knowledge. Build safer digital habits."
+                       FontSize="13"
+                       Foreground="#94A3B8"
+                       HorizontalAlignment="Center"
+                       Margin="0,7,0,0"/>
+        </StackPanel>
+
+        <!-- Progress -->
+        <Border Grid.Row="1"
+                Background="#101A2B"
+                BorderBrush="#26364D"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="15"
+                Margin="0,0,0,18">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="YOUR PROGRESS"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="#94A3B8"
+                               Margin="0,0,0,5"/>
+
+                    <TextBlock x:Name="ProgressText"
+                               Text="Question 1 of 5"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="#F1F5F9"/>
+                </StackPanel>
+
+                <Border Grid.Column="1"
+                        Background="#15352F"
+                        CornerRadius="8"
+                        Padding="12,8"
+                        VerticalAlignment="Center">
+
+                    <TextBlock Text="● ACTIVE"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Foreground="#34D399"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Question card -->
+        <Border Grid.Row="2"
+                Background="#101A2B"
+                BorderBrush="#26364D"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="25">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <TextBlock Text="KNOWLEDGE CHECK"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Foreground="#34D399"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock x:Name="QuestionText"
+                               Text="Question appears here"
+                               FontSize="21"
+                               FontWeight="SemiBold"
+                               Foreground="#F1F5F9"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,22"/>
+
+                    <RadioButton x:Name="OptionA"
+                                 GroupName="Answers"
+                                 Style="{StaticResource AnswerOptionStyle}"/>
+
+                    <RadioButton x:Name="OptionB"
+                                 GroupName="Answers"
+                                 Style="{StaticResource AnswerOptionStyle}"/>
+
+                    <RadioButton x:Name="OptionC"
+                                 GroupName="Answers"
+                                 Style="{StaticResource AnswerOptionStyle}"/>
+
+                    <TextBlock x:Name="FeedbackText"
+                               FontSize="14"
+                               Foreground="#34D399"
+                               TextWrapping="Wrap"
+                               Margin="0,18,0,0"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Score -->
+        <Grid Grid.Row="3"
+              Margin="0,18,0,18">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <TextBlock Text="CURRENT SCORE"
+                           FontSize="10"
+                           FontWeight="Bold"
+                           Foreground="#94A3B8"/>
+
+                <TextBlock x:Name="ScoreText"
+                           Text="Score: 0"
+                           FontSize="17"
+                           FontWeight="Bold"
+                           Foreground="#34D399"
+                           Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <TextBlock Grid.Column="1"
+                       Text="Stay alert. Stay secure."
+                       FontSize="12"
+                       Foreground="#94A3B8"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Action -->
+        <Button x:Name="NextButton"
+                Grid.Row="4"
+                Content="Submit Answer  →"
+                Height="48"
+                HorizontalAlignment="Stretch"
+                Style="{StaticResource QuizButtonStyle}"
+                Click="NextButton_Click"/>
+
+    </Grid>
+</Window>

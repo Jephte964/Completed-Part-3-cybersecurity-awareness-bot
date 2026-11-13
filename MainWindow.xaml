@@ -1,0 +1,356 @@
+﻿<Window x:Class="CybersecurityAwarenessBot.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Bot"
+        Height="780"
+        Width="1080"
+        MinHeight="600"
+        MinWidth="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#080E1A"
+        Foreground="#F1F5F9"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="12,9"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity" Value="0.68"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TopicButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#17243A"/>
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="BorderBrush" Value="#2B3B54"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Padding" Value="13,9"/>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#34D399"/>
+            <Setter Property="Foreground" Value="#07111F"/>
+            <Setter Property="BorderBrush" Value="#34D399"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#24334B"/>
+            <Setter Property="Foreground" Value="#F1F5F9"/>
+            <Setter Property="BorderBrush" Value="#34445F"/>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#101A2B"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="BorderBrush" Value="#1C2A40"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="SectionLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Border Grid.Row="0"
+                Style="{StaticResource CardStyle}"
+                Padding="22"
+                Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="CYBERSECURITY AWARENESS"
+                               Foreground="#34D399"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Margin="0,0,0,8"/>
+
+                    <TextBlock Text="Security Assistant"
+                               Foreground="#F8FAFC"
+                               FontSize="28"
+                               FontWeight="Bold"/>
+
+                    <TextBlock Text="Your personal guide to safer digital habits."
+                               Foreground="#A9B8CC"
+                               FontSize="13"
+                               Margin="0,7,0,0"/>
+                </StackPanel>
+
+                <Border Grid.Column="1"
+                        Background="#122D2B"
+                        BorderBrush="#205348"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="12,8"
+                        VerticalAlignment="Top"
+                        Margin="12,0,0,0">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Ellipse Width="8"
+                                 Height="8"
+                                 Fill="#34D399"
+                                 Margin="0,0,8,0"/>
+                        <TextBlock Text="SYSTEM ONLINE"
+                                   Foreground="#6EE7B7"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- TOPICS AND FEATURES -->
+        <Border Grid.Row="1"
+                Style="{StaticResource CardStyle}"
+                Padding="15"
+                Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="LEARN ABOUT"
+                           Style="{StaticResource SectionLabelStyle}"
+                           Margin="3,0,0,10"/>
+
+                <WrapPanel>
+                    <Button Content="Passwords" Tag="password"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Phishing" Tag="phishing"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Online Scams" Tag="scam"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Privacy" Tag="privacy"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Malware" Tag="malware"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Wi-Fi Security" Tag="wifi"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                    <Button Content="Two-Factor Authentication"
+                            Tag="authentication"
+                            Click="TopicButton_Click"
+                            Style="{StaticResource TopicButtonStyle}"/>
+                </WrapPanel>
+
+                <Separator Background="#25334A"
+                           Height="1"
+                           Margin="3,12,3,10"/>
+
+                <TextBlock Text="YOUR SECURITY TOOLS"
+                           Style="{StaticResource SectionLabelStyle}"
+                           Margin="3,0,0,8"/>
+
+                <WrapPanel>
+                    <Button Content="TAKE CYBERSECURITY QUIZ"
+                            Click="OpenQuizButton_Click"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Padding="16,11"/>
+
+                    <Button Content="OPEN SECURITY TASK LIST"
+                            Click="OpenTaskListButton_Click"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Padding="16,11"/>
+
+                    <Button Content="VIEW ACTIVITY LOG"
+                            Click="OpenActivityLogButton_Click"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Padding="16,11"/>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- CHAT AREA -->
+        <Border Grid.Row="2"
+                Style="{StaticResource CardStyle}"
+                Padding="16"
+                Margin="0,0,0,12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="3,0,3,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="CONVERSATION"
+                                   Foreground="#F1F5F9"
+                                   FontSize="13"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Ask a question or choose a topic above."
+                                   Foreground="#8192AA"
+                                   FontSize="11"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Background="#17243A"
+                            CornerRadius="8"
+                            Padding="9,5"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="SECURE CHAT"
+                                   Foreground="#6EE7B7"
+                                   FontSize="9"
+                                   FontWeight="Bold"/>
+                    </Border>
+                </Grid>
+
+                <Border Grid.Row="1"
+                        Background="#0B1423"
+                        BorderBrush="#1C2A40"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="12">
+                    <ScrollViewer x:Name="ChatScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="ChatPanel"
+                                    HorizontalAlignment="Stretch"/>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- MESSAGE INPUT -->
+        <Border Grid.Row="3"
+                Style="{StaticResource CardStyle}"
+                Padding="12"
+                Margin="0,0,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="InputBox"
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         MinHeight="44"
+                         MaxLength="500"
+                         Padding="13,10"
+                         FontSize="14"
+                         Foreground="#F8FAFC"
+                         Background="#0B1423"
+                         BorderBrush="#34445F"
+                         BorderThickness="1"
+                         CaretBrush="#34D399"
+                         VerticalContentAlignment="Center"
+                         TextChanged="InputBox_TextChanged"
+                         KeyDown="InputBox_KeyDown"
+                         ToolTip="Type your cybersecurity question here"/>
+
+                <Button x:Name="SendButton"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Content="SEND"
+                        MinWidth="82"
+                        Margin="9,0,0,0"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Click="SendButton_Click"/>
+
+                <Button x:Name="ClearChatButton"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Content="CLEAR"
+                        MinWidth="72"
+                        Margin="6,0,0,0"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Click="ClearChatButton_Click"/>
+
+                <TextBlock x:Name="CharacterCounter"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Text="0 / 500 characters"
+                           Foreground="#8192AA"
+                           FontSize="10"
+                           HorizontalAlignment="Right"
+                           Margin="0,7,4,0"/>
+            </Grid>
+        </Border>
+
+        <!-- FOOTER -->
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,1,0,0">
+            <TextBlock Text="STAY ALERT"
+                       Foreground="#34D399"
+                       FontSize="10"
+                       FontWeight="Bold"/>
+            <TextBlock Text="  •  STAY INFORMED  •  STAY SAFE ONLINE"
+                       Foreground="#8192AA"
+                       FontSize="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
